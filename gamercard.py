@@ -1,5 +1,6 @@
 import flet as ft
 
+
 def main(page: ft.Page):
     # Configurações da Janela
     page.title = "Gamer Card"
@@ -10,11 +11,13 @@ def main(page: ft.Page):
     # Cabeçalho: Avatar (Emoji) e Nome do Lado
     cabecalho = ft.Row(
         controls=[
-            ft.Text("🥷", size=60), #Emoji a prova de erros
+            ft.Text("🤖", size=60),  # Emoji a prova de erros
             ft.Column(
                 controls=[
-                    ft.Text("SHADOW_NINJA", size=24, weight="bold", color="white"),
-                    ft.Text("Nível 42 - Ninja das Sombras", size=24, color="grey300"),
+                    ft.Text("ROBMAN", size=24,
+                            weight="bold", color="white"),
+                    ft.Text("Nível 50 - Pesado e Esperto",
+                            size=24, color="grey300"),
                 ], spacing=2
             )
         ],
@@ -22,4 +25,58 @@ def main(page: ft.Page):
     )
 
     # Status: Barra de HP, MP e XP
+    status_bar = ft.Row(
+        controls=[
+            ft.Container(
+                content=ft.Text(
+                    "HP: 5050", text_align=ft.TextAlign.CENTER, weight="bold"),
+                bgcolor="red400", padding=10, border_radius=8, expand=7
+            ),
+            ft.Container(
+                content=ft.Text(
+                    "MP: 50", text_align=ft.TextAlign.CENTER, weight="bold"),
+                bgcolor="blue400", padding=10, border_radius=8, expand=3
+            ),
+            ft.Container(
+                content=ft.Text(
+                    "XP: 999", text_align=ft.TextAlign.CENTER, weight="bold"),
+                bgcolor="amber400", padding=10, border_radius=8, expand=2
+            ),
+        ],
+        spacing=10
+    )
+    
+    #BOTÕES: ações do jogador
+    
+    botoes_acao = ft.Row(
+        controls=[
+            ft.Button(
+                content="adicionar Amigo",
+                bgcolor="#36628E",
+                color="white"
+            ),
+            ft.Button(
+                content="Inventário",
+                bgcolor="red",
+                color="white"
+            ),
+        ],
+        alignment=ft.MainAxisAlignment.CENTER,
+        spacing=20
+    )
+    
+    #CARTÃO PRINCIPAL
+    cartao = ft.Container(
+        content=ft.Column(
+            controls=[cabecalho, status_bar, botoes_acao],
+            spacing=30
+        ),
+        bgcolor= "#2E2E2E",
+        padding=40,
+        border_radius=15,
+        width=450,
+        shadow=ft.BoxShadow(blur_radius=20, color="black") #aqui vai ser um efeito de som
+    )
+    
+    page.add(cartao)
 ft.run(main)
